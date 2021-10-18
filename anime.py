@@ -1,6 +1,8 @@
+import os
+os.system("pip install requests bs4")
+os.system("cls")
 import requests
 from bs4 import BeautifulSoup
-import os
 
 url="https://tenshi.moe"
 
@@ -60,4 +62,12 @@ text_with_link = soup.findAll('script')[3]
 download_link = text_with_link.text.split()[38]
 download_link = download_link[1:-2]
 
-os.system("curl {0} -o {1}".format(download_link, fname))
+print("do you want to download or stream? (choose 1/2)")
+op = int(input())
+while(op<=2 and op>0):
+    if op == 1:
+        os.system("curl {0} -o {1}".format(download_link, fname))
+        break
+    else:
+        os.system("vlc {0}".format(download_link))
+        break
